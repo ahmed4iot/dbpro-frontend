@@ -24,11 +24,12 @@ export default function Items({ token, onLogout }) {
       const method = editId ? 'PUT' : 'POST';
   const url = editId ? `https://dbpro-backend.onrender.com/api/items/${editId}` : 'https://dbpro-backend.onrender.com/api/items';
       // تحويل القيم الرقمية
-      const body = {
-        ...form,
-        priceUSD: Number(form.priceUSD),
-        priceIQD: Number(form.priceIQD)
-      };
+        // إرسال القيم كما هي أو null إذا كانت فارغة
+        const body = {
+          ...form,
+          priceUSD: form.priceUSD === '' ? null : Number(form.priceUSD),
+          priceIQD: form.priceIQD === '' ? null : Number(form.priceIQD)
+        };
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
@@ -63,8 +64,8 @@ export default function Items({ token, onLogout }) {
       <h2>جدول المواد</h2>
       <form onSubmit={handleSubmit} style={{ marginBottom: 20 }}>
         <input name="name" placeholder="اسم المادة" value={form.name} onChange={handleChange} required style={{ width: 120, marginRight: 5 }} />
-        <input name="priceUSD" type="number" placeholder="السعر بالدولار" value={form.priceUSD} onChange={handleChange} required style={{ width: 120, marginRight: 5 }} />
-        <input name="priceIQD" type="number" placeholder="السعر بالدينار" value={form.priceIQD} onChange={handleChange} required style={{ width: 120, marginRight: 5 }} />
+    <input name="priceUSD" type="number" placeholder="السعر بالدولار" value={form.priceUSD} onChange={handleChange} style={{ width: 120, marginRight: 5 }} />
+    <input name="priceIQD" type="number" placeholder="السعر بالدينار" value={form.priceIQD} onChange={handleChange} style={{ width: 120, marginRight: 5 }} />
         <input name="date" type="date" value={form.date} onChange={handleChange} required style={{ width: 140, marginRight: 5 }} />
         <button type="submit">{editId ? 'تعديل' : 'إضافة'}</button>
         {editId && <button type="button" onClick={() => { setEditId(null); setForm({ name: '', priceUSD: '', priceIQD: '', date: '' }); }}>إلغاء</button>}
