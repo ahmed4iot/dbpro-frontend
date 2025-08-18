@@ -7,7 +7,7 @@ export default function Items({ token, onLogout }) {
   const [error, setError] = useState('');
 
   const fetchItems = async () => {
-    const res = await fetch('http://localhost:5000/api/items', {
+  const res = await fetch('https://dbpro-backend.onrender.com/api/items', {
       headers: { Authorization: 'Bearer ' + token }
     });
     setItems(await res.json());
@@ -22,7 +22,7 @@ export default function Items({ token, onLogout }) {
     setError('');
     try {
       const method = editId ? 'PUT' : 'POST';
-      const url = editId ? `http://localhost:5000/api/items/${editId}` : 'http://localhost:5000/api/items';
+  const url = editId ? `https://dbpro-backend.onrender.com/api/items/${editId}` : 'https://dbpro-backend.onrender.com/api/items';
       // تحويل القيم الرقمية
       const body = {
         ...form,
@@ -50,7 +50,7 @@ export default function Items({ token, onLogout }) {
 
   const handleDelete = async id => {
     if (!window.confirm('تأكيد الحذف؟')) return;
-    await fetch(`http://localhost:5000/api/items/${id}`, {
+  await fetch(`https://dbpro-backend.onrender.com/api/items/${id}`, {
       method: 'DELETE',
       headers: { Authorization: 'Bearer ' + token }
     });
