@@ -70,7 +70,7 @@ export default function Items({ token, onLogout }) {
       alignItems: 'center',
       justifyContent: 'flex-start',
     }}>
-      <img src="https://placehold.co/90x90?text=Items" alt="Items" style={{ margin: '36px 0 10px', borderRadius: '50%', boxShadow: '0 2px 8px #185a9d44' }} />
+  <img src="/logo.png" alt="Logo" style={{ margin: '36px 0 10px', borderRadius: '50%', boxShadow: '0 2px 8px #185a9d44', width: 90, height: 90, objectFit: 'cover' }} />
       <button onClick={onLogout} style={{ position: 'absolute', left: 24, top: 24, background: '#e53935', color: '#fff', border: 'none', borderRadius: 8, padding: '8px 18px', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 2px 8px #e5393544', transition: 'background 0.2s' }} onMouseOver={e => e.target.style.background = '#b71c1c'} onMouseOut={e => e.target.style.background = '#e53935'}>تسجيل الخروج</button>
       <h2 style={{ textAlign: 'center', margin: '10px 0 24px', color: '#185a9d', letterSpacing: 1, fontWeight: 700 }}>جدول المواد</h2>
       <form onSubmit={handleSubmit} style={{
@@ -119,8 +119,8 @@ export default function Items({ token, onLogout }) {
             {items.map(item => (
               <tr key={item._id} style={{ transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = '#e3f2fd'} onMouseOut={e => e.currentTarget.style.background = ''}>
                 <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.name}</td>
-                <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.priceUSD}</td>
-                <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.priceIQD}</td>
+                <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.priceUSD} {item.priceUSD ? '$' : ''}</td>
+                <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.priceIQD} {item.priceIQD ? 'ID' : ''}</td>
                 <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}>{item.date.slice(0,10)}</td>
                 <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}><button onClick={() => handleEdit(item)} style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 14px', cursor: 'pointer', fontWeight: 'bold', transition: 'background 0.2s' }} onMouseOver={e => e.target.style.background = '#125ea2'} onMouseOut={e => e.target.style.background = '#1976d2'}>تعديل</button></td>
                 <td style={{ padding: '8px 4px', border: '1px solid #ddd' }}><button onClick={() => handleDelete(item._id)} style={{ background: '#e53935', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 14px', cursor: 'pointer', fontWeight: 'bold', transition: 'background 0.2s' }} onMouseOver={e => e.target.style.background = '#b71c1c'} onMouseOut={e => e.target.style.background = '#e53935'}>حذف</button></td>

@@ -47,7 +47,7 @@ export default function Login({ onLogin }) {
         alignItems: 'center',
         position: 'relative',
       }}>
-        <img src="https://placehold.co/80x80?text=Logo" alt="Logo" style={{ marginBottom: 18, borderRadius: '50%', boxShadow: '0 2px 8px #ccc' }} />
+  <img src="/logo.png" alt="Logo" style={{ marginBottom: 18, borderRadius: '50%', boxShadow: '0 2px 8px #ccc', width: 80, height: 80, objectFit: 'cover' }} />
         <h2 style={{ marginBottom: 18, color: '#2575fc', letterSpacing: 1 }}>تسجيل الدخول</h2>
         <input
           type="text"
